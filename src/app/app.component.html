@@ -2,10 +2,17 @@
   <h1>
     {{title}}
   </h1>
+  <h2>Budget for shopping: <input type="text" class="budget"[(ngModel)]="budget"></h2>
   <h2>Remaining shopping budget: {{cashLeft() | currency:'USD':true}} </h2>
   <ul>
     <li *ngFor="let item of items">
       <h2>{{item.name}} {{item.cost | currency:'USD':true}}</h2>
+      <div *ngIf="item.buying">
+        <button class="button-cancel" (click)="cancelItem(item)"  >X</button>
+      </div>
+      <div *ngIf="!item.buying">
+        <button class="button-cancel" (click)="addItem(item)"  >X</button>
+      </div>
     </li>
   </ul>
   <h2>Total cost: {{totalCost() | currency:'USD':true}}</h2>

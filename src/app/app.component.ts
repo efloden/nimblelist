@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Item } from './item';
 import { ITEMS } from './mocks';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -26,5 +27,13 @@ export class AppComponent {
 
   cashLeft() {
     return this.budget - this.totalCost();
+  }
+
+  cancelItem(item) {
+    item.buying = false;
+  }
+
+  addItem(item) {
+    item.buying = true;
   }
 }
