@@ -1,0 +1,13 @@
+h1 {
+  color: green;
+  text-align: center;
+}
+
+.list-page {
+    max-width: 480px;
+    margin: 1em auto;
+    padding: 2em;
+    background: #ffffff;
+    border-radius: 4px;
+    opacity: 0.95;
+}
