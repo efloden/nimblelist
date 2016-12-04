@@ -1,6 +1,10 @@
 export class Item {
-  id: number;
-  name: string;
-  cost: number;
-  buying: boolean;
+
+  constructor(
+    public id: number,
+    public name: string,
+    public cost: number,
+    public buying: boolean,
+  ) { }
+
 }
