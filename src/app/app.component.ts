@@ -5,11 +5,32 @@ import { ITEMS } from './mocks';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+  <div class="list-page">
+    <h1>
+      {{title}}
+    </h1>
+    <item-form></item-form>
+    <ul>
+      <li *ngFor="let item of items">
+        <h2>{{item.name}} {{item.cost | currency:'USD':true}}</h2>
+        <div *ngIf="item.buying">
+          <button class="button-cancel" (click)="cancelItem(item)"  >X</button>
+        </div>
+        <div *ngIf="!item.buying">
+          <button class="button-cancel" (click)="addItem(item)"  >X</button>
+        </div>
+      </li>
+    </ul>
+    <h3>Budget for shopping: <input type="text" style="width:30%" class="budget"[(ngModel)]="budget"></h3>
+    <h3>Remaining shopping budget: {{cashLeft() | currency:'USD':true}} </h3>
+    <h3>Total cost: {{totalCost() | currency:'USD':true}}</h3>
+  </div>
+  `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'NimbleList : Groceries';
+  title = 'NimbleList';
   budget = 100;
   items: Item[];
 
