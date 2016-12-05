@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ItemFormComponent } from './item-form.component';
 import { Item } from './item';
 import { ITEMS } from './mocks';
 
@@ -36,6 +37,8 @@ export class AppComponent {
 
   ngOnInit() {
       this.items = ITEMS;
+      var mock: Item = new Item(1, "Coffee", 3, true);
+      this.pushItem(mock);
   }
 
   totalCost() {
@@ -57,4 +60,9 @@ export class AppComponent {
   addItem(item) {
     item.buying = true;
   }
+
+  pushItem(item) {
+    this.items.push(item);
+  }
+
 }
