@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ItemFormComponent } from './item-form.component';
 import { Item } from './item';
 import { ITEMS } from './mocks';
 
@@ -11,20 +10,59 @@ import { ITEMS } from './mocks';
     <h1>
       {{title}}
     </h1>
-    <item-form></item-form>
-    <ul>
-      <li *ngFor="let item of items">
-        <h2>{{item.name}} {{item.cost | currency:'USD':true}}</h2>
-        <div *ngIf="item.buying">
-          <button class="button-cancel" (click)="cancelItem(item)"  >X</button>
+    <div class="jumbotron">
+
+        <div class="container">
+        <h2> Add Groceries </h2>
+          <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name"
+                     required
+                     [(ngModel)]="model.name" name="name"
+                     #name="ngModel" >
+            </div>
+            <div class="form-group">
+              <label for="cost">Cost</label>
+              <input type="number" class="form-control" id="cost"
+                     required
+                     [(ngModel)]="model.cost" name="cost"
+                     #cost="ngModel" >
+            </div>
+            <button type="submit" class="btn btn-default"
+                (click)="onSubmit(); newItem(); itemForm.reset();"
+                [disabled]="!itemForm.form.valid">
+              Submit
+            </button>
+          </form>
         </div>
-        <div *ngIf="!item.buying">
-          <button class="button-cancel" (click)="addItem(item)"  >X</button>
+    </div>
+
+    <ul class="list-group">
+      <li class="list-group-item" *ngFor="let item of items" style="padding:1px 3px;">
+        <div style="display:inline-block">
+        <p>{{item.name}} {{item.cost | currency:'USD':true}}</p>
+        </div>
+        <div *ngIf="item.buying" style="display:inline-block;float:right;padding:0">
+          <span class="badge" (click)="cancelItem(item)">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Remove
+          </span>
+        </div>
+        <div *ngIf="!item.buying" style="display:inline-block;float:right;padding:0">
+          <span class="badge" (click)="addItem(item)">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Add
+          </span>
         </div>
       </li>
     </ul>
     <h3>Budget for shopping: <input type="text" style="width:30%" class="budget"[(ngModel)]="budget"></h3>
     <h3>Remaining shopping budget: {{cashLeft() | currency:'USD':true}} </h3>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="cashLeft()"
+      aria-valuemin="0" [attr.aria-valuemax]="budget" [style.width]="(cashLeft() / budget * 100) + '%'">
+        {{cashLeft() / budget * 100}} %
+      </div>
+    </div>
     <h3>Total cost: {{totalCost() | currency:'USD':true}}</h3>
   </div>
   `,
@@ -37,8 +75,6 @@ export class AppComponent {
 
   ngOnInit() {
       this.items = ITEMS;
-      var mock: Item = new Item(1, "Coffee", 3, true);
-      this.pushItem(mock);
   }
 
   totalCost() {
@@ -65,4 +101,18 @@ export class AppComponent {
     this.items.push(item);
   }
 
+  model = new Item(1, 'Coffee', 3.50, true);
+
+  submitted = false;
+
+  onSubmit() {
+      this.submitted = true;
+      this.items.push(this.model);
+  }
+
+  newItem() {
+    this.model = new Item(1, 'Coffee', 3.50, true);
+  }
+
+  get diagnostic() { return JSON.stringify(this.model); }
 }

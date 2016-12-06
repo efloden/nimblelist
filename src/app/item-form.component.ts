@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component} from '@angular/core';
 import { AppComponent } from './app.component';
 import { Item }    from './item';
 
@@ -12,15 +12,8 @@ export class ItemFormComponent {
 
   submitted = false;
 
-  @Input() items;
-
   onSubmit() {
-    this.submitted = true
-    this.items.pushItem(this.model);
-  }
-
-  newItem() {
-    this.model = new Item(42, '', 42, true);
+    this.submitted = true;
   }
 
   // TODO: Remove this when we're done
