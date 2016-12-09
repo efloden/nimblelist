@@ -9,7 +9,8 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 * Grocery adding form with Name and Cost fields - Implemented
 * Shopping Budget input and Remaining Budget, Total Cost display - Implemented
 * List persistence through [angular-2-local-storage](https://www.npmjs.com/package/angular-2-local-storage) - Implemented
-* List sorting of checked and uncheck items - Implemented
+* List sorting of checked and unchecked items - Implemented
+* Separation of list by item type/isle locations - Planned
 * User Accounts and Login page - Planned
 * Automated price lookup on items - Planned
 
