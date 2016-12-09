@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
+import { OrderByPipe } from './orderby-pipe.component';
 import { Item } from './item';
 import { ITEMS } from './mocks';
 
@@ -40,7 +41,7 @@ import { ITEMS } from './mocks';
     </div>
 
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let item of items" style="padding:1px 3px;">
+      <li class="list-group-item" *ngFor="let item of items | orderBy" style="padding:1px 3px;">
         <div style="display:inline-block">
         <p>{{item.name}} {{item.cost | currency:'USD':true}}</p>
         </div>
@@ -57,6 +58,7 @@ import { ITEMS } from './mocks';
       </li>
     </ul>
     <h3>Budget for shopping: <input type="text" style="width:30%" class="budget"[(ngModel)]="budget"></h3>
+    <h3>Total cost: {{totalCost() | currency:'USD':true}}</h3>
     <h3>Remaining shopping budget: {{cashLeft() | currency:'USD':true}} </h3>
     <div class="progress">
       <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="cashLeft()"
@@ -64,7 +66,6 @@ import { ITEMS } from './mocks';
         {{cashLeft() / budget * 100}} %
       </div>
     </div>
-    <h3>Total cost: {{totalCost() | currency:'USD':true}}</h3>
   </div>
   `,
   styleUrls: ['./app.component.css']

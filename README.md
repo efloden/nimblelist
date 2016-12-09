@@ -1,12 +1,17 @@
 # Nimblelist
+NimbleList is a web-based grocery list management app built with Angular 2
+
+Add your Grocery items to the list, tick them off as you shop and keep track of your budget.
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.21.
 
 ## Feature Summary
 * Grocery adding form with Name and Cost fields - Implemented)
 * Shopping Budget input and Remaining Budget, Total Cost display - Implemented
-* List persitance through [angular-2-local-storage](https://www.npmjs.com/package/angular-2-local-storage) - Planned
+* List persistence through [angular-2-local-storage](https://www.npmjs.com/package/angular-2-local-storage) - Implemented
+* List sorting of checked and uncheck items - Implemented
 * User Accounts and Login page - Planned
+* Automated price lookup on items - Planned
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

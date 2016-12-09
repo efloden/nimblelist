@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ItemFormComponent } from './item-form.component'
+import { OrderByPipe } from './orderby-pipe.component';
 import { LocalStorageService, LOCAL_STORAGE_SERVICE_CONFIG } from 'angular-2-local-storage';
 
 // Create config options (see ILocalStorageServiceConfigOptions) for deets:
@@ -15,7 +16,8 @@ let localStorageServiceConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    ItemFormComponent
+    ItemFormComponent,
+    OrderByPipe
   ],
   imports: [
     BrowserModule,

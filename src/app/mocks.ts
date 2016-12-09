@@ -12,7 +12,7 @@ export const ITEMS: Item[] = [{
   "buying": true
 }, {
   "id": 3,
-  "name": "Cereal",
-  "cost": 4.5,
+  "name": "Bread",
+  "cost": 3.5,
   "buying": true
 }];
