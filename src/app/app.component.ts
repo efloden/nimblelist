@@ -45,13 +45,13 @@ import { ITEMS } from './mocks';
         <p>{{item.name}} {{item.cost | currency:'USD':true}}</p>
         </div>
         <div *ngIf="item.buying" style="display:inline-block;float:right;padding:0">
-          <span class="badge" (click)="cancelItem(item)">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Remove
+          <span class="badge" (click)="boughtItem(item)">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Buying
           </span>
         </div>
         <div *ngIf="!item.buying" style="display:inline-block;float:right;padding:0">
-          <span class="badge" (click)="addItem(item)">
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Add
+          <span class="badge" (click)="buyingItem(item)">
+              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Bought
           </span>
         </div>
       </li>
@@ -77,9 +77,11 @@ export class AppComponent {
   constructor (private localStorageService: LocalStorageService) {}
 
   ngOnInit() {
-      this.items = ITEMS;
-      this.localStorageService.set('someKey', 'Hello from Local Storage');
-      console.log(this.localStorageService.get('someKey'));
+      //this.items = ITEMS;
+      //this.localStorageService.set('storedItems', ITEMS);
+      this.items = this.localStorageService.get('storedItems') as Item[];
+      console.log(this.localStorageService.keys());
+      console.log(this.localStorageService.get('storedItems'));
   }
 
   totalCost() {
@@ -94,16 +96,24 @@ export class AppComponent {
     return this.budget - this.totalCost();
   }
 
-  cancelItem(item) {
+  boughtItem(item) {
     item.buying = false;
   }
 
-  addItem(item) {
+  buyingItem(item) {
     item.buying = true;
   }
 
   pushItem(item) {
     this.items.push(item);
+    this.localStorageService.set('storedItems', this.items);
+  }
+
+  removeItem(item) {
+    var index = this.items.indexOf(item, 0);
+    if (index > -1) {
+        this.items.splice(index, 1);
+    }
   }
 
   model = new Item(1, 'Coffee', 3.50, true);
@@ -112,7 +122,7 @@ export class AppComponent {
 
   onSubmit() {
       this.submitted = true;
-      this.items.push(this.model);
+      this.pushItem(this.model);
   }
 
   newItem() {
