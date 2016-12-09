@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LocalStorageService } from 'angular-2-local-storage';
 import { Item } from './item';
 import { ITEMS } from './mocks';
 
@@ -73,8 +74,12 @@ export class AppComponent {
   budget = 100;
   items: Item[];
 
+  constructor (private localStorageService: LocalStorageService) {}
+
   ngOnInit() {
       this.items = ITEMS;
+      this.localStorageService.set('someKey', 'Hello from Local Storage');
+      console.log(this.localStorageService.get('someKey'));
   }
 
   totalCost() {
