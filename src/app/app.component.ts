@@ -13,7 +13,6 @@ import { ITEMS } from './mocks';
       {{title}}
     </h1>
     <div class="jumbotron">
-
         <div class="container">
         <h2> Add Groceries </h2>
           <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
@@ -39,21 +38,25 @@ import { ITEMS } from './mocks';
           </form>
         </div>
     </div>
-
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let item of items | orderBy" style="padding:1px 3px;">
         <div style="display:inline-block">
-        <p>{{item.name}} {{item.cost | currency:'USD':true}}</p>
+        <p>
+        <button type="button" class="btn btn-danger btn-xs" (click)="removeItem(item)">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true" style="font-"></span>
+        </button>
+          {{item.name}} {{item.cost | currency:'USD':true}}
+        </p>
         </div>
         <div *ngIf="item.buying" style="display:inline-block;float:right;padding:0">
-          <span class="badge" (click)="boughtItem(item)">
-            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Buying
-          </span>
+          <button class="btn btn-primary btn-xs" (click)="boughtItem(item)">
+            Buying
+          </button>
         </div>
         <div *ngIf="!item.buying" style="display:inline-block;float:right;padding:0">
-          <span class="badge" (click)="buyingItem(item)">
+          <button class="btn btn-success btn-xs" (click)="buyingItem(item)">
               <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Bought
-          </span>
+          </button>
         </div>
       </li>
     </ul>
