@@ -77,9 +77,10 @@ export class AppComponent {
   constructor (private localStorageService: LocalStorageService) {}
 
   ngOnInit() {
-      //this.items = ITEMS;
-      //this.localStorageService.set('storedItems', ITEMS);
-      this.items = this.localStorageService.get('storedItems') as Item[];
+      this.items = ITEMS;
+      if (this.localStorageService.get('storedItems') != null) {
+          this.items = this.localStorageService.get('storedItems') as Item[];
+      }
       console.log(this.localStorageService.keys());
       console.log(this.localStorageService.get('storedItems'));
   }
