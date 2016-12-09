@@ -60,9 +60,9 @@ import { ITEMS } from './mocks';
         </div>
       </li>
     </ul>
-    <h3>Budget for shopping: <input type="text" style="width:30%" class="budget"[(ngModel)]="budget"></h3>
-    <h3>Total cost: {{totalCost() | currency:'USD':true}}</h3>
-    <h3>Remaining shopping budget: {{cashLeft() | currency:'USD':true}} </h3>
+    <p>Budget for shopping: <input type="text" style="width:30%" class="budget"[(ngModel)]="budget"></p>
+    <p>Total cost: {{totalCost() | currency:'USD':true}}</p>
+    <p>Remaining shopping budget: {{cashLeft() | currency:'USD':true}} </p>
     <div class="progress">
       <div class="progress-bar" role="progressbar" [attr.aria-valuenow]="cashLeft()"
       aria-valuemin="0" [attr.aria-valuemax]="budget" [style.width]="(cashLeft() / budget * 100) + '%'">
