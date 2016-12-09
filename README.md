@@ -2,6 +2,12 @@
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.21.
 
+## Feature Summary
+* Grocery adding form with Name and Cost fields - Implemented)
+* Shopping Budget input and Remaining Budget, Total Cost display - Implemented
+* List persitance through [angular-2-local-storage](https://www.npmjs.com/package/angular-2-local-storage) - Planned
+* User Accounts and Login page - Planned
+
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
