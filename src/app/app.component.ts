@@ -31,7 +31,7 @@ import { AngularFire, AuthProviders, FirebaseListObservable } from 'angularfire2
           <i class="material-icons">home</i> Woolworths
         </div>
         <div id="menu-my-top-posts" class="mdl-layout__tab mdl-button mdl-js-button mdl-js-ripple-effect">
-          <i class="material-icons">trending_up</i> FujiMart
+          <i class="material-icons">trending_up</i> Fuji
         </div>
         <button (click)="addButton()" class="mdl-button mdl-js-button mdl-button--fab mdl-color--amber-400 mdl-shadow--4dp mdl-js-ripple-effect" id="add">
           <i class="material-icons">mode_edit</i>
