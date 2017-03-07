@@ -4,12 +4,11 @@ h1 {
 }
 
 .list-page {
-    max-width: 480px;
+    max-width:50em;
     margin: 1em auto;
     padding: 2em;
     background: #ffffff;
     border-radius: 4px;
-    opacity: 0.95;
 }
 
 .red {
